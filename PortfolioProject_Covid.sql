@@ -26,7 +26,7 @@ ORDER BY
   1, 2
 
 # Looking at Total cases vs Total Deaths
-# Shows likley hood of dying if you contract covid in your country
+# Shows likleyhood of dying if you contract covid in your country
 
 SELECT
   location, 
