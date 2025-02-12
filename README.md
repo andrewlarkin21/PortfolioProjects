@@ -5,11 +5,28 @@ In my free time, I enjoy exploring new data analysis tools and techniques, and I
 
 # Table of Contents
 
-## Portfolio Projects
-
 **SQL**
 - [COVID 19 Data Exploration](https://github.com/andrewlarkin21/PortfolioProjects/blob/main/PortfolioProject_Covid.sql)
 - [24-25 NBA Mid-Season Analysis](https://github.com/andrewlarkin21/PortfolioProjects/blob/main/2024-2025%20NBA%20Midseason%20Analysis)
 
 **Tableau**
 - [Tableau Profile - Andrew Larkin](https://public.tableau.com/app/profile/andrew.larkin/vizzes)
+
+## Portfolio Projects
+Covid 19 Data Exploration
+Code: [COVID 19 Data Exploration](https://github.com/andrewlarkin21/PortfolioProjects/blob/main/PortfolioProject_Covid.sql)
+
+Description: The dataset contains records of Covid-19 cases, deaths and vaccine records by country in 2020-2021. This project includes the following steps: data loading, data cleaning and preprocessing and EDA (exploratory data analysis).
+
+Skills: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
+
+Technology: BigQuery
+
+2024-2025 NBA Mid-season Analysis
+Code: [24-25 NBA Mid-Season Analysis](https://github.com/andrewlarkin21/PortfolioProjects/blob/main/2024-2025%20NBA%20Midseason%20Analysis)
+
+Description: The dataset contains statistical data of players from the current 2024-2025 NBA Season. This project consists of data loading, data cleaning, data processing, data merging and EDA ( exploratory data analysis).
+
+Skills: JOINS, Aggregate Functions, CTE's
+
+Technology: BigQuery
