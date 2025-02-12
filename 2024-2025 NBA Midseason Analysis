@@ -1,0 +1,139 @@
+-- Who are the most efficient scorers?
+SELECT
+  `Player`,
+  `Pos`,
+  `Team`,
+  `PTS`,
+  `FG`,
+  `FGA`,
+  `FG%`,
+  `3P`,
+  `3PA`,
+  `3P%`,
+  `2P`,
+  `2PA`,
+  `2P%`,
+  `FT`,
+  `FTA`,MP
+  `FT%`,
+  `eFG%`
+FROM
+  `portfolio-448503.NBA20242025.playersmetrics_pergame` 
+ORDER BY
+  `PTS` desc
+Limit 10
+
+-- What are the key factors contributing to team success? 
+-- analyze off and def ratings, pace of play, and rebounding %
+-- analyze team stats and overall wins
+
+SELECT
+  `Team`,
+  `Rk` AS Rank,
+  `ORtg`,
+  `DRtg`,
+  `Pace`,
+  `ORB%`,
+  `opponentDRB%` AS `DRB%`,
+FROM
+  `portfolio-448503.NBA20242025.teamstats_adv`
+ORDER BY
+  `Rank` ASC ;
+
+-- How do the top two teams in each conference differ across key stats/four factors?
+
+WITH TopTeams AS (
+    SELECT
+        `Team`,
+        `ORtg` AS offensive_rating,
+        `DRtg` AS defensive_rating,
+        `W` AS wins,
+        `L` AS losses,
+        `eFG%` AS effective_field_goal_percentage,
+        `TOV%` AS turnover_rate,
+        `FTr` AS free_throw_rate,
+        `ORB%` AS offensive_rebound_percentage,
+        ROW_NUMBER() OVER (ORDER BY (`Rk`) ASC) AS rank
+    FROM
+       `portfolio-448503.NBA20242025.teamstats_adv`
+)
+SELECT
+    t1.Team AS team1,
+    t1.offensive_rating AS team1_offensive_rating,
+    t1.defensive_rating AS team1_defensive_rating,
+    t1.effective_field_goal_percentage AS team1_efg_percentage,
+    t1.turnover_rate AS team1_turnover_rate,
+    t1.free_throw_rate AS team1_ft_rate,
+    t1.offensive_rebound_percentage AS team1_orb_percentage,
+    
+    t2.Team AS team2,
+    t2.offensive_rating AS team2_offensive_rating,
+    t2.defensive_rating AS team2_defensive_rating,
+    t2.effective_field_goal_percentage AS team2_efg_percentage,
+    t2.turnover_rate AS team2_turnover_rate,
+    t2.free_throw_rate AS team2_ft_rate,
+    t2.offensive_rebound_percentage AS team2_orb_percentage
+FROM
+    TopTeams t1
+JOIN
+    TopTeams t2 ON t2.rank = t1.rank + 1
+WHERE
+    t1.rank = 1;
+
+-- League leaders in key stats? Minutes played has to be <1000; 3P >=82;
+
+WITH EligiblePLayers AS (
+    SELECT
+    p.`Player`,
+    p.`PTS`,
+    p.`FG%`,
+    p.`BLK`,
+    p.`STL`,
+    p.`TRB`,
+    p.`AST`,
+    p.`3P%`
+    FROM
+        `portfolio-448503.NBA20242025.playersmetrics_pergame` p
+    JOIN
+        `portfolio-448503.NBA20242025.playersmetrics_totals` t ON p.`Player` = t.`Player`
+    WHERE
+        t.`MP` >= 1000
+) 
+, ThreePointEligiblePlayers AS (
+    SELECT
+        ep.`Player`,
+        ep.`PTS`,
+        ep.`FG%`,
+        ep.`BLK`,
+        ep.`STL`,
+        ep.`TRB`,
+        ep.`AST`,
+        ep.`3P%`
+    FROM
+        `EligiblePlayers` ep
+    JOIN
+        `portfolio-448503.NBA20242025.playersmetrics_totals` t ON ep.`Player` = t.`Player`
+    WHERE
+        t.`3P` >= 82
+)
+SELECT
+    (SELECT `Player` FROM `EligiblePlayers` ORDER BY `PTS` DESC LIMIT 1) AS points_leader,
+    (SELECT `PTS` FROM `EligiblePlayers`  ORDER BY `PTS` DESC LIMIT 1) AS points,
+    
+    (SELECT `Player` FROM `EligiblePlayers` ORDER BY `FG%` DESC LIMIT 1) AS field_goal_percentage_leader,
+    (SELECT `FG%` FROM `EligiblePlayers` ORDER BY `FG%` DESC LIMIT 1) AS field_goal_percentage,
+    
+    (SELECT `Player` FROM `EligiblePlayers` ORDER BY `BLK`DESC LIMIT 1) AS blocks_leader,
+    (SELECT `BLK` FROM `EligiblePlayers` ORDER BY `BLK` DESC LIMIT 1) AS blocks,
+    
+    (SELECT `Player` FROM `EligiblePlayers` ORDER BY `STL` DESC LIMIT 1) AS steals_leader,
+    (SELECT `STL` FROM `EligiblePlayers` ORDER BY `STL` DESC LIMIT 1) AS steals,
+    
+    (SELECT `Player` FROM `EligiblePlayers` ORDER BY `TRB` DESC LIMIT 1) AS rebounds_leader,
+    (SELECT `TRB` FROM `EligiblePlayers` ORDER BY `TRB` DESC LIMIT 1) AS rebounds,
+    
+    (SELECT `Player` FROM `EligiblePlayers` ORDER BY `AST` DESC LIMIT 1) AS assists_leader,
+    (SELECT `AST` FROM `EligiblePlayers` ORDER BY `AST` DESC LIMIT 1) AS assists,
+    
+    (SELECT `Player` FROM `ThreePointEligiblePlayers` ORDER BY `3P%` DESC LIMIT 1) AS three_point_percentage_leader,
+    (SELECT `3P%` FROM `ThreePointEligiblePlayers` ORDER BY `3P%` DESC LIMIT 1) AS three_point_percentage;
