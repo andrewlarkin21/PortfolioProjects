@@ -9,6 +9,7 @@ In my free time, I enjoy exploring new data analysis tools and techniques, and I
 
 **SQL**
 - [COVID 19 Data Exploration](https://github.com/andrewlarkin21/PortfolioProjects/blob/main/PortfolioProject_Covid.sql)
+- [24-25 NBA Mid-Season Analysis](https://github.com/andrewlarkin21/PortfolioProjects/blob/main/PortfolioProject_Covid.sql)
 
 **Tableau**
 - [Tableau Profile - Andrew Larkin](https://public.tableau.com/app/profile/andrew.larkin/vizzes)
