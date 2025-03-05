@@ -35,7 +35,7 @@ Skills: JOINS, Aggregate Functions, CTE's
 Technology: BigQuery
 
 ### Maven Marketing Campaign Analysis
-Excel: [Maven Marketing Campaign Analysis](https://1drv.ms/x/c/0a6ec2cb447910cf/EfVOkjs67a5Lt4z4OIiQJU8BhVR_wnrS4QMvaLn0Mx-GEA?e=YLNw1m)
+Excel: [Maven Marketing Campaign Analysis](https://github.com/andrewlarkin21/Maven-Marketing-Campaign-Analysis)
 
 Description: Marketing campaign data of 2,240 customers of Maven Marketing, including customer profiles, product preferences, campaign successes/failures, and channel performance.
 
