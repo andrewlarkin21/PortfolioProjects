@@ -12,6 +12,9 @@ In my free time, I enjoy exploring new data analysis tools and techniques, and I
 **Tableau**
 - [Tableau Profile - Andrew Larkin](https://public.tableau.com/app/profile/andrew.larkin/vizzes)
 
+**Excel**
+- [Maven Marketing Campaign Analysis](https://1drv.ms/x/c/0a6ec2cb447910cf/EfVOkjs67a5Lt4z4OIiQJU8BhVR_wnrS4QMvaLn0Mx-GEA?e=YLNw1m)
+
 ## Portfolio Projects
 ### Covid 19 Data Exploration
 Code: [COVID 19 Data Exploration](https://github.com/andrewlarkin21/PortfolioProjects/blob/main/PortfolioProject_Covid.sql)
@@ -30,3 +33,12 @@ Description: The dataset contains statistical data of players from the current 2
 Skills: JOINS, Aggregate Functions, CTE's
 
 Technology: BigQuery
+
+### Maven Marketing Campaign Analysis
+Excel: [Maven Marketing Campaign Analysis](https://1drv.ms/x/c/0a6ec2cb447910cf/EfVOkjs67a5Lt4z4OIiQJU8BhVR_wnrS4QMvaLn0Mx-GEA?e=YLNw1m)
+
+Description: Marketing campaign data of 2,240 customers of Maven Marketing, including customer profiles, product preferences, campaign successes/failures, and channel performance.
+
+Skills: Data cleaning, data formatting, pivot charts, pivot tables, dashboard visualization, cell references. 
+
+Technology: Excel
